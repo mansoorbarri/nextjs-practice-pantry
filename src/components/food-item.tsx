@@ -14,9 +14,10 @@ export default function FoodItem({ name, quantity, location, expires }: FoodItem
       </div>
       <div>
         <h3 className="font-bold text-lg">{name}</h3>
-        <p className="text-gray-600">Quantity: {quantity}</p>
-        <p className="text-gray-600">Location: {location}</p>
-        <p className="text-gray-600">Expires: {expires}</p>
+        {/* Separating the label from the value */}
+        <p className="text-black"><span className="font-bold">Quantity:</span> {quantity}</p>
+        <p className="text-black"><span className="font-bold">Location:</span> {location}</p>
+        <p className="text-black"><span className="font-bold">Expires:</span> {expires}</p>
       </div>
     </div>
   )

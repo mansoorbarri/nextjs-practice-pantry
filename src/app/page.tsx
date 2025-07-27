@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <header className="sticky top-0 bg-white border-b border-gray-200 z-10">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="container mx-6 h-16 flex items-center justify-between shadow-md"> 
           <Button variant="ghost" size="icon" className="h-10 w-10" onClick={() => setSidebarOpen(true)}>
             <Menu className="h-6 w-6" />
           </Button>
@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-6 py-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold">the pantry</h1>
           <Link href="/add-food">
@@ -36,8 +36,8 @@ export default function Home() {
         </div>
 
         <div className="relative mb-6">
-          <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-          <Input className="pl-10 border-gray-300 border rounded-md w-full" placeholder="Search by name or key word" />
+          <Search className="absolute left-5.5 top-3 h-4 w-5 text-gray-500" strokeWidth={3} />
+          <Input className="pl-10 border-gray-300 text-gray-500 placeholder-grey-500 border rounded-full w-full" placeholder="Search by name or key word" />
         </div>
 
         <div className="space-y-4">
