@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useParams } from "next/navigation"
 import { ArrowLeft, Trash2 } from "lucide-react"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
@@ -19,12 +19,9 @@ import {
   AlertDialogTitle,
 } from "~/components/ui/alert-dialog"
 
-interface PageProps {
-  params: Promise<{ id: string }>
-}
-
-export default async function ProductDetail({ params }: PageProps) {
-  const { id } = await params
+export default function ProductDetail() {
+  const params = useParams()
+  const id = params.id as string
   const router = useRouter()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
