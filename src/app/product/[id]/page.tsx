@@ -19,7 +19,12 @@ import {
   AlertDialogTitle,
 } from "~/components/ui/alert-dialog"
 
-export default function ProductDetail({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: Promise<{ id: string }>
+}
+
+export default async function ProductDetail({ params }: PageProps) {
+  const { id } = await params
   const router = useRouter()
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
