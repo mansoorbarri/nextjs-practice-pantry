@@ -60,7 +60,7 @@ export default function Home() {
         </div>
       </main>
 
-      <SidebarNav username="johndoe" isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <SidebarNav username={user?.fullName} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
     </div>
   )
 }
