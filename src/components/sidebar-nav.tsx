@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { Home, Users, User } from "lucide-react"
-import { SignOutButton, useUser } from "@clerk/nextjs"
 
 interface SidebarNavProps {
   username: any
@@ -11,6 +10,7 @@ interface SidebarNavProps {
 }
 
 export default function SidebarNav({ username, isOpen, onClose }: SidebarNavProps) {
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 z-50 flex">
@@ -27,10 +27,9 @@ export default function SidebarNav({ username, isOpen, onClose }: SidebarNavProp
             <Users className="h-5 w-5" />
             <span>Users</span>
           </Link>
-          {/* show full name */}
-          <div className="flex items-center gap-3 p-2 rounded-md">
+          <div className="flex items-center gap-3 p-2 rounded-md ">
             <User className="h-5 w-5" />
-            <Link href="/user-profile" onClick={onClose}> {/* Add onClick to close sidebar */}
+            <Link href="/user-profile">
             <span>{username}</span>
             </Link>
           </div>
