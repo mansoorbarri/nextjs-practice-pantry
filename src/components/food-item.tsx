@@ -11,7 +11,7 @@ interface FoodItemProps {
 export default function FoodItem({ name, imageUrl, quantity, location, expires }: FoodItemProps) {
   return (
     <div className="flex items-start p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-      <div className="h-25 w-100 bg-gray-100 rounded-md mr-4 flex items-center justify-center">  
+      <div className="h-50 w-100 bg-gray-100 rounded-md mr-4 flex items-center justify-center">  
         <Image
           src={imageUrl}
           alt="Food Item"
