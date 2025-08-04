@@ -94,9 +94,9 @@ export default function Home() {
         // Assuming 'updatedAt' field exists or using 'expirationDate' as a fallback for 'newly updated'
         // Ideally, you'd have an 'updatedAt' timestamp from your API for this.
         return sortedItems.sort((a, b) => {
-          const dateA = new Date(a.updatedAt || a.expirationDate).getTime();
-          const dateB = new Date(b.updatedAt || b.expirationDate).getTime();
-          return dateB - dateA; // Newest first
+          const dateA = new Date(a.expirationDate).getTime();
+          const dateB = new Date(b.expirationDate).getTime();
+          return dateA - dateB; 
         });
       default:
         return sortedItems;
@@ -187,7 +187,7 @@ export default function Home() {
                   Quantity (Low to High)
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setSortOrder('date-new-to-old')} className="text-sm">
-                  Date (New to Old)
+                  Expiration (Near to Far)
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
