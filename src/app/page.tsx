@@ -9,6 +9,8 @@ import SidebarNav from "~/components/sidebar-nav"
 import { useUser } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "~/components/ui/dropdown-menu" // Assuming you have these UI components for dropdowns
+import PersistScrollLink from "~/components/PersistScrollLink"
+import { usePathname } from "next/navigation"
 
 // Type definition for food item from your API
 interface FoodItemData {
@@ -47,6 +49,21 @@ export default function Home() {
   if (!user) {
     redirect('/sign-up')
   }
+
+  const pathname = usePathname(); // Get the current pathname
+
+    // Restore scroll position after data has loaded
+  useEffect(() => {
+    // Check for both the loading state and the pathname
+    if (!loading) {
+      const storedScrollPosition = sessionStorage.getItem(`scrollPosition_${pathname}`);
+      if (storedScrollPosition) {
+        window.scrollTo(0, parseInt(storedScrollPosition, 10));
+        // Optional: clear the value to prevent it from being restored on reload
+        sessionStorage.removeItem(`scrollPosition_${pathname}`);
+      }
+    }
+  }, [loading, pathname]); // Depend on both loading and pathname
 
   // Function to fetch all food items
   const fetchFoodItems = async () => {
@@ -224,7 +241,7 @@ export default function Home() {
           )}
 
           {!loading && !error && filteredAndSortedFoodItems.map((item) => (
-            <Link key={item.id} href={`/product/${item.id}`}>
+            <PersistScrollLink key={item.id} href={`/product/${item.id}`}>
               <FoodItem 
                 name={item.name}
                 quantity={item.quantity}
@@ -232,7 +249,7 @@ export default function Home() {
                 imageUrl={item.imageUrl}
                 expires={formatDate(item.expirationDate)}
               />
-            </Link>
+            </PersistScrollLink>
           ))}
         </div>
       </main>
